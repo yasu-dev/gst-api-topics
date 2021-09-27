@@ -1,12 +1,15 @@
+import logging
+import boto3
 import json
-import datetime
 
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
-def handler(event, context):
-    data = {
-        'output': 'Hello World',
-        'timestamp': datetime.datetime.utcnow().isoformat()
-    }
-    return {'statusCode': 200,
-            'body': json.dumps(data),
-            'headers': {'Content-Type': 'application/json'}}
+dynamodb = boto3.resource('dynamodb')
+table_name = 'Topic'
+table = dynamodb.Table(table_name)
+
+def lambda_handler(event, context):
+
+    logger.info("get_topics_information")
+    return table.scan()
