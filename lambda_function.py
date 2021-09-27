@@ -11,5 +11,5 @@ table = dynamodb.Table(table_name)
 
 def lambda_handler(event, context):
 
-    logger.info("GET topics")
+    logger.info("Topics")
     return table.scan()
