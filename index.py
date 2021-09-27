@@ -9,7 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 table_name = 'Topic'
 table = dynamodb.Table(table_name)
 
-def lambda_handler(event, context):
+def handler(event, context):
 
     logger.info("get_topics_information")
     return table.scan()
