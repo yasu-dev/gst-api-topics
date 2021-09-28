@@ -10,8 +10,12 @@ class TestHandlerCase(unittest.TestCase):
         print(result)
         self.assertEqual(result['statusCode'], 200)
         self.assertEqual(result['headers']['Content-Type'], 'application/json')
-##        self.assertIn('Hello World', result['body'])
-
+        self.assertIn('topicId', result['body'])
+        self.assertIn('topicType', result['body'])
+        self.assertIn('topicTitle', result['body'])
+        self.assertIn('topicBody', result['body'])
+        self.assertIn('topicImageUrl', result['body'])
+        self.assertIn('publish', result['body'])
 
 if __name__ == '__main__':
     unittest.main()
