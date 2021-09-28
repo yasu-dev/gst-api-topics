@@ -30,6 +30,7 @@ Resources:
       FunctionName: !Sub 'get_topics_information'
       Handler: index.handler
       Runtime: python3.8
+      Description: 'GET /api/v1/topics'
       Role:
         Fn::GetAtt:
         - LambdaExecutionRole
