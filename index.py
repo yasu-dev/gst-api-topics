@@ -12,7 +12,7 @@ table = dynamodb.Table(table_name)
 
 def handler(event, context):
 
-    logger.info('GET Topics')
+    logger.info('GET /api/v1/topics')
 
     response = table.scan()
 
