@@ -15,6 +15,7 @@ def handler(event, context):
     logger.info('GET /api/v1/topics')
 
     response = table.scan()
+    response.encoding = response.apparent_encoding
 
     return {
             'headers': {'Content-Type': 'application/json'},
