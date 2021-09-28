@@ -1,6 +1,7 @@
 import logging
 import boto3
 import json
+import simplejson as json
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -11,13 +12,12 @@ table = dynamodb.Table(table_name)
 
 def handler(event, context):
 
-    logger.info('get_topics_information')
+    logger.info('GET Topics')
 
     response = table.scan()
-    data = response['Items']
 
     return {
             'headers': {'Content-Type': 'application/json'},
             'statusCode': 200,
-            'body': json.dumps(data)
+            'body': json.dumps(response['Items'])
             }
