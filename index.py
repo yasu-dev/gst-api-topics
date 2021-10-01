@@ -18,7 +18,10 @@ def handler(event, context):
     response.encoding = response.apparent_encoding
 
     return {
-            'headers': {'Content-Type': 'application/json'},
             'statusCode': 200,
+            'headers': {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+            },
             'body': json.dumps(response['Items'])
             }
