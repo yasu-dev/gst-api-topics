@@ -23,4 +23,4 @@ def handler(event, context):
               'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps(response['Items'])
-            }
+    }
