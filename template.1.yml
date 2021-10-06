@@ -31,3 +31,23 @@ Resources:
       Handler: index.handler
       Runtime: python3.8
       Description: 'GET /api/v1/topics'
+      Role:
+        Fn::GetAtt:
+        - LambdaExecutionRole
+        - Arn
+  LambdaExecutionRole:
+    Description: Creating service role in IAM for AWS Lambda
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'CodeStar-${ProjectId}-Execution${Stage}'
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: [lambda.amazonaws.com]
+          Action: sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonDynamoDBFullAccess'
+      PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonDynamoDBFullAccess'
